@@ -12,16 +12,22 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/outline'
 import { HomeIcon } from '@heroicons/react/solid'
+import { useRecoilState } from 'recoil'
+import { modalState } from '../atoms/modalAtom'
 
 const Header = () => {
   const { data: session } = useSession()
+  const [open, setOpen] = useRecoilState(modalState)
   const router = useRouter()
 
   return (
     <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
       <div className="flex justify-between max-w-6xl mx-5 bg-white lg:mx-auto">
         {/* Left */}
-        <div onClick={() => router.push('/')} className="relative hidden w-24 cursor-pointer lg:inline-grid">
+        <div
+          onClick={() => router.push('/')}
+          className="relative hidden w-24 cursor-pointer lg:inline-grid"
+        >
           <Image
             src="/logo.png"
             layout="fill"
@@ -30,7 +36,10 @@ const Header = () => {
           />
         </div>
 
-        <div onClick={() => router.push('/')}  className="relative flex-shrink-0 w-10 cursor-pointer lg:hidden">
+        <div
+          onClick={() => router.push('/')}
+          className="relative flex-shrink-0 w-10 cursor-pointer lg:hidden"
+        >
           <Image
             src="/simpleLogo.png"
             layout="fill"
@@ -53,7 +62,7 @@ const Header = () => {
 
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon onClick={() => router.push('/')}  className="navBtn" />
+          <HomeIcon onClick={() => router.push('/')} className="navBtn" />
           <MenuIcon className="h-6 cursor-pointer md:hidden" />
 
           {session ? (
@@ -64,7 +73,10 @@ const Header = () => {
                   8
                 </div>
               </div>
-              <PlusCircleIcon className="navBtn" />
+              <PlusCircleIcon
+                onClick={() => setOpen(true)}
+                className="navBtn"
+              />
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
 

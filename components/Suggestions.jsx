@@ -30,9 +30,9 @@ const Suggestions = () => {
         <button className="font-semibold text-gray-500">Ver todas</button>
       </div>
 
-      {suggestionsToFollow.map((profile) => (
+      {suggestionsToFollow.map((profile, index) => (
         <div
-          key={profile.id}
+          key={index}
           className="flex items-center justify-between mt-3"
         >
           <img
