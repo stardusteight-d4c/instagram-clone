@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
 import Story from './Story'
+import { useSession } from 'next-auth/react'
 
 const Stories = () => {
   const [followingUsersStories, setFollowingUsersStories] = useState([])
+  const { data: session } = useSession()
 
   const createRandomUser = () => {
     return {
@@ -24,6 +26,13 @@ const Stories = () => {
 
   return (
     <div className="flex p-6 mt-8 space-x-2 overflow-x-scroll bg-white border border-gray-200 rounded-sm scrollbar-thin scrollbar-thumb-black">
+      {session && (
+        <Story
+          img={session.user.image}
+          username={session.user.username}
+          name={session.user.name}
+        />
+      )}
       {followingUsersStories.map((profile) => (
         <Story
           key={profile.userId}
@@ -32,11 +41,6 @@ const Stories = () => {
           name={profile.name}
         />
       ))}
-      {/* Story */}
-      {/* Story */}
-      {/* Story */}
-      {/* Story */}
-      {/* Story */}
     </div>
   )
 }

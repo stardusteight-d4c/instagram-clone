@@ -18,6 +18,7 @@ const Post = ({ id, username, userImg, img, caption }) => {
         <img
           className="object-contain w-12 h-12 p-1 mr-3 border rounded-full"
           src={userImg}
+          referrerPolicy="no-referrer"
           alt="User image"
         />
         <p className="flex-1 font-bold">{username}</p>
@@ -25,7 +26,12 @@ const Post = ({ id, username, userImg, img, caption }) => {
       </div>
 
       {/* img */}
-      <img src={img} alt="Post image" className="object-cover w-full" />
+      <img
+        src={img}
+        alt="Post image"
+        referrerPolicy="no-referrer"
+        className="object-cover w-full"
+      />
 
       {/* Buttons */}
       <div className="flex justify-between px-4 pt-4">
