@@ -21,7 +21,7 @@ const Header = () => {
   const router = useRouter()
 
   return (
-    <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
+    <div className="sticky top-0 z-50 w-screen overflow-x-hidden bg-white border-b shadow-sm">
       <div className="flex justify-between max-w-4xl mx-2 bg-white md:mx-5 lg:mx-auto">
         {/* Left */}
         <div
