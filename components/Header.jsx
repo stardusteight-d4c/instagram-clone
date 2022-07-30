@@ -22,11 +22,11 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
-      <div className="flex justify-between max-w-6xl mx-5 bg-white lg:mx-auto">
+      <div className="flex justify-between max-w-4xl mx-5 bg-white lg:mx-auto">
         {/* Left */}
         <div
           onClick={() => router.push('/')}
-          className="relative hidden w-24 cursor-pointer lg:inline-grid"
+          className="relative hidden cursor-pointer w-28 lg:inline-grid"
         >
           <Image
             src="/logo.png"
@@ -49,19 +49,19 @@ const Header = () => {
         </div>
 
         {/* Middle - Search input field */}
-        <div className="relative p-3 mt-1 rounded-md">
+        <div className="relative p-3 mt-1 rounded-md ml-[65px]">
           <div className="absolute inset-y-0 flex items-center pl-3 pointer-events-none">
             <SearchIcon className="w-5 h-5 text-gray-500" />
           </div>
           <input
-            className="block w-full pl-10 border-gray-300 rounded-md bg-gray-50 sm:text-sm focus:ring-black focus:border-black"
+            className="block w-[120%] pl-10 outline-none py-2 rounded-md bg-[#efefef] sm:text-sm"
             type="text"
             placeholder="Procurar"
           />
         </div>
 
         {/* Right */}
-        <div className="flex items-center justify-end space-x-4">
+        <div className="flex items-center justify-end space-x-4 mr-[-20px]">
           <HomeIcon onClick={() => router.push('/')} className="navBtn" />
           <MenuIcon className="h-6 cursor-pointer md:hidden" />
 
@@ -85,7 +85,7 @@ const Header = () => {
                 src={session.user.image}
                 referrerPolicy="no-referrer"
                 alt={session.user.name}
-                className="h-10 rounded-full cursor-pointer"
+                className="w-8 rounded-full cursor-pointer"
               />
             </>
           ) : (

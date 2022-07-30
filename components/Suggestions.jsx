@@ -24,7 +24,7 @@ const Suggestions = () => {
   }, [])
 
   return (
-    <div className="mt-4 ml-10">
+    <div className="mt-4 ml-8">
       <div className="flex justify-between mb-5 text-sm">
         <h3 className="text-sm font-bold text-gray-400">Sugestões para você</h3>
         <button className="font-semibold text-gray-500">Ver todas</button>

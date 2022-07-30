@@ -14,6 +14,8 @@ import {
 } from '@firebase/firestore'
 import { db } from '../firebase'
 import Moment from 'react-moment'
+import moment from 'moment'
+import 'moment/locale/pt-br'
 import {
   BookmarkIcon,
   ChatIcon,
@@ -23,6 +25,7 @@ import {
   PaperAirplaneIcon,
 } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
+import Picker from '@emoji-mart/react'
 
 const Post = ({ id, username, userImg, img, caption }) => {
   const { data: session } = useSession()
@@ -30,6 +33,7 @@ const Post = ({ id, username, userImg, img, caption }) => {
   const [comments, setComments] = useState([])
   const [likes, setLikes] = useState([])
   const [hasLiked, setHasLiked] = useState(false)
+  const [showEmojis, setShowEmojis] = useState(false)
 
   useEffect(
     () =>
@@ -83,8 +87,17 @@ const Post = ({ id, username, userImg, img, caption }) => {
     })
   }
 
+  const addEmoji = (e) => {
+    let sym = e.unified.split('-')
+    let codesArray = []
+    sym.forEach((el) => codesArray.push('0x' + el))
+    let emoji = String.fromCodePoint(...codesArray)
+    setComment(comment + emoji)
+  }
+
+  moment.locale('pr-br')
   return (
-    <div className="bg-white border rounded-sm my-7">
+    <div className="bg-white border rounded-lg shadow-sm my-7">
       {/* Header */}
       <div className="flex items-center p-5">
         <img
@@ -93,8 +106,8 @@ const Post = ({ id, username, userImg, img, caption }) => {
           referrerPolicy="no-referrer"
           alt="User image"
         />
-        <p className="flex-1 font-bold">{username}</p>
-        <DotsHorizontalIcon className="h-5" />
+        <p className="flex-1 font-bold cursor-pointer">{username}</p>
+        <DotsHorizontalIcon className="h-5 cursor-pointer" />
       </div>
 
       {/* img */}
@@ -133,7 +146,7 @@ const Post = ({ id, username, userImg, img, caption }) => {
 
       {/* comments */}
       {comments.length > 0 && (
-        <div className="h-20 ml-10 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+        <div className="h-20 ml-4 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
           {comments.map((comment) => (
             <div key={comment.id} className="flex items-center mb-3 space-x-2">
               <img
@@ -155,14 +168,21 @@ const Post = ({ id, username, userImg, img, caption }) => {
 
       {/* input box */}
       {session && (
-        <form className="flex items-center p-4">
-          <EmojiHappyIcon className="w-7" />
+        <form className="relative flex items-center p-4">
+          <EmojiHappyIcon className="cursor-pointer w-7" onClick={() => setShowEmojis(!showEmojis)} />
+
+          {showEmojis && (
+                <div className="absolute rounded-[20px] mt-[-475px] ml-[-40px] max-w-[305px]">
+                  <Picker onEmojiSelect={addEmoji} theme="light" locale="pt" />
+                </div>
+              )}
+
           <input
             type="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Deixe um comentário..."
-            className="flex-1 border-none outline-none focus:ring-0"
+            className="flex-1 ml-2 border-none outline-none focus:ring-0"
           />
           <button
             type="submit"

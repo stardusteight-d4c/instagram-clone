@@ -114,10 +114,10 @@ const Modal = () => {
                 ) : (
                   <div
                     onClick={() => filePickerRef.current.click()} // O clique vai para filePickerRef no input do tipo file
-                    className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full cursor-pointer"
+                    className="flex items-center justify-center w-12 h-12 mx-auto bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] rounded-full cursor-pointer"
                   >
                     <CameraIcon
-                      className="w-6 h-6 text-red-600"
+                      className="w-6 h-6 text-white"
                       aria-hidden="true"
                     />
                   </div>
@@ -144,7 +144,7 @@ const Modal = () => {
 
                   <div className="mt-2">
                     <input
-                      className="w-full text-center border-none focus:ring-0"
+                      className="w-full text-center border-none outline-none focus:ring-0"
                       type="text"
                       ref={captionRef}
                       placeholder="Insira uma descrição..."
