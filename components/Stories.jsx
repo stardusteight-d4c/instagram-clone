@@ -10,7 +10,6 @@ const Stories = () => {
   const createRandomUser = () => {
     return {
       userId: faker.datatype.uuid(),
-      name: faker.name.findName(),
       username: faker.internet.userName(),
       avatar: faker.image.avatar(),
     }
@@ -38,7 +37,6 @@ const Stories = () => {
           key={profile.userId}
           img={profile.avatar}
           username={profile.username}
-          name={profile.name}
         />
       ))}
     </div>

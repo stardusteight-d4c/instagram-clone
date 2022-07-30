@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
 import { faker } from '@faker-js/faker'
@@ -38,7 +39,6 @@ const Suggestions = () => {
           <img
             className="w-10 h-10 rounded-full border p-[2px]"
             src={profile.avatar}
-            alt={profile.name}
           />
 
           <div className="flex-1 ml-4">
