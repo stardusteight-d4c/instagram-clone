@@ -49,7 +49,7 @@ const Header = () => {
         </div>
 
         {/* Middle - Search input field */}
-        <div className="relative p-3 mt-1 rounded-md ml-[65px]">
+        <div className="relative p-3 mt-1 rounded-md w-[180px] md:w-auto md:ml-[-65px]">
           <div className="absolute inset-y-0 flex items-center pl-3 pointer-events-none">
             <SearchIcon className="w-5 h-5 text-gray-500" />
           </div>
@@ -89,7 +89,7 @@ const Header = () => {
               />
             </>
           ) : (
-            <button onClick={signIn}>Entrar</button>
+            <button onClick={signIn} className="pr-5 md:pr-0">Entrar</button>
           )}
         </div>
       </div>
