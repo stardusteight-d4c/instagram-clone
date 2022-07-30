@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-50 bg-white border-b shadow-sm">
-      <div className="flex justify-between max-w-4xl mx-5 bg-white lg:mx-auto">
+      <div className="flex justify-between max-w-4xl mx-2 bg-white md:mx-5 lg:mx-auto">
         {/* Left */}
         <div
           onClick={() => router.push('/')}
@@ -80,16 +80,19 @@ const Header = () => {
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
 
+              <div className="w-12 h-8 md:hidden" />
               <img
                 onClick={signOut}
                 src={session.user.image}
                 referrerPolicy="no-referrer"
                 alt={session.user.name}
-                className="w-8 rounded-full cursor-pointer"
+                className="absolute w-8 h-8 rounded-full cursor-pointer right-2 top-5 md:static"
               />
             </>
           ) : (
-            <button onClick={signIn} className="pr-5 md:pr-0">Entrar</button>
+            <button onClick={signIn} className="pr-5 md:pr-0">
+              Entrar
+            </button>
           )}
         </div>
       </div>
