@@ -1,4 +1,4 @@
-# Twitter | Firebase & NextAuth.js
+# Instagram | Firebase & NextAuth.js
 
 ![cover](cover.png)
 
