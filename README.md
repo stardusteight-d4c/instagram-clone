@@ -76,4 +76,198 @@ module.exports = {
 ```
 *<i>tailwindcss.com</i>
 
+<br />
+
+NextAuth | Sessions and Content Control
+
+With NextAuth it is possible to implement a user session (interval/period of time in which there is a communication between two or more devices) in a matter of minutes. 
+
+### Add API route
+
+To add NextAuth.js to a project create a file called  `[...nextauth].js` in `pages/api/auth`. This contains the dynamic route handler for NextAuth.js which will also contain all of your global NextAuth.js configurations.
+
+```js
+// pages/api/auth/[...nextauth].js
+
+import NextAuth from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+
+export default NextAuth({
+  // Configure one or more authentication providers
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    // ...add more providers here
+  ],
+  secret: process.env.JWT_SECRET,
+  pages: {
+    signIn: '/auth/signin',
+  },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.username = session.user.name
+        .split(' ')
+        .join('')
+        .toLowerCase()
+
+      session.user.uid = token.sub
+      return session
+    },
+  },
+})
+```
+
+### Configure Shared session state
+
+To be able to use `useSession` first you'll need to expose the session context, `<SessionProvider />`, at the top level of your application:
+
+```jsx
+// pages/_app.jsx
+
+import '../styles/global.css'
+import { SessionProvider } from 'next-auth/react'
+import { RecoilRoot } from 'recoil'
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  return (
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </SessionProvider>
+  )
+}
+```
+
+### Create dynamic components and control the content that can be seen with the <strong>useSession</strong> hook
+
+The `useSession()` React Hook in the NextAuth.js client is the easiest way to check if someone is signed in:
+
+```jsx
+// components/Post.jsx
+
+// ...
+const Post = ({ id, username, userImg, img, caption }) => {
+  const { data: session } = useSession()
+  const [comment, setComment] = useState('')
+  const [comments, setComments] = useState([])
+  const [likes, setLikes] = useState([])
+  const [hasLiked, setHasLiked] = useState(false)
+  const [showEmojis, setShowEmojis] = useState(false)
+
+  // ...
+  return (
+    <div className="bg-white border rounded-lg shadow-sm my-7">
+      {/* Header */}
+      <div className="flex items-center p-5">
+        <img
+          className="object-contain w-12 h-12 p-1 mr-3 border rounded-full"
+          src={userImg}
+          referrerPolicy="no-referrer"
+          alt="User image"
+        />
+        <p className="flex-1 font-bold cursor-pointer">{username}</p>
+        <DotsHorizontalIcon className="h-5 cursor-pointer" />
+      </div>
+
+      {/* img */}
+      <img
+        src={img}
+        alt="Post image"
+        referrerPolicy="no-referrer"
+        className="object-cover w-full"
+      />
+
+      {/* Buttons */}
+      {session && (
+        <div className="flex justify-between px-4 pt-4">
+          <div className="flex space-x-4">
+            {hasLiked ? (
+              <HeartIconSolid onClick={likePost} className="text-red-500 btn" />
+            ) : (
+              <HeartIcon onClick={likePost} className="btn" />
+            )}
+            <ChatIcon className="btn" />
+            <PaperAirplaneIcon className="-mt-1 rotate-45 btn" />
+          </div>
+          <BookmarkIcon className="btn" />
+        </div>
+      )}
+
+      {/* caption */}
+      <p className="p-5 truncate">
+        {likes.length > 0 && (
+          <p className="mb-1 font-bold">{likes.length} likes</p>
+        )}
+
+        <span className="mr-1 font-bold">{username}</span>
+        {caption}
+      </p>
+
+      {/* comments */}
+      {comments.length > 0 && (
+        <div className="h-20 ml-4 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+          {comments.map((comment) => (
+            <div key={comment.id} className="flex items-center mb-3 space-x-2">
+              <img
+                src={comment.data().userImage}
+                alt=""
+                className="rounded-full w-7"
+              />
+              <p className="flex-1 text-sm">
+                <span className="font-bold">{comment.data().username}</span>{' '}
+                {comment.data().comment}
+              </p>
+              <Moment fromNow className="pr-5 text-xs">
+                {comment.data().timestamp?.toDate()}
+              </Moment>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* input box */}
+      {session && (
+        <form className="relative flex items-center p-4">
+          <EmojiHappyIcon className="cursor-pointer w-7" onClick={() => setShowEmojis(!showEmojis)} />
+
+          {showEmojis && (
+                <div className="absolute rounded-[20px] mt-[-475px] ml-[-40px] max-w-[305px]">
+                  <Picker onEmojiSelect={addEmoji} theme="light" locale="pt" />
+                </div>
+              )}
+
+          <input
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Deixe um comentário..."
+            className="flex-1 ml-2 border-none outline-none focus:ring-0"
+          />
+          <button
+            type="submit"
+            disabled={!comment.trim()}
+            onClick={sendComment}
+            className="font-semibold text-blue-400 disabled:cursor-not-allowed"
+          >
+            Post
+          </button>
+        </form>
+      )}
+    </div>
+  )
+}
+
+export default Post
+```
+
+
+
+
+
 
