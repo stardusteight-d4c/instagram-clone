@@ -6,7 +6,7 @@ const MiniProfile = () => {
   const { data: session } = useSession()
 
   return (
-    <div className="flex items-center justify-between mt-5 ml-8">
+    <div className="flex items-center w-[290px] justify-between mt-5 ml-8">
       <img
         className="w-16 h-16 rounded-full border p-[2px]"
         referrerPolicy="no-referrer"
