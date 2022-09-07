@@ -12,6 +12,36 @@
 
 Tailwind CSS is a framework designed to maximize the potential of Cascading Style Sheets and take them even further. Simple, minimalist and intuitive, it offers lean code, fast customization and easy responsiveness with a Mobile First approach, work the content and form of your components without leaving JSX. 
 
+```jsx
+// components/MiniProfile.jsx 
+
+const MiniProfile = () => {
+  const { data: session } = useSession()
+
+  return (
+    <div className="flex items-center w-[290px] justify-between mt-5 ml-8">
+      <img
+        className="w-16 h-16 rounded-full border p-[2px]"
+        referrerPolicy="no-referrer"
+        src={session?.user.image}
+        alt="User image"
+      />
+
+      <div className="flex-1 mx-4">
+        <h2 className="font-bold cursor-pointer">{session?.user.username}</h2>
+        <h3 className="text-sm text-gray-400">Bem vindo ao instagram</h3>
+      </div>
+
+      <button onClick={signOut} className="text-sm font-semibold text-blue-400">
+        Sair
+      </button>
+    </div>
+  )
+}
+
+export default MiniProfile
+```
+
 <li type="square"><strong>An API for your design system</strong> - Utility classes help you work within the constraints of a system instead of littering your stylesheets with arbitrary values. They make it easy to be consistent with color choices, spacing, typography, shadows, and everything else that makes up a well-engineered design system.</li> <br />
 
 <li type="square"><strong>Never ship unused CSS</strong> - Tailwind automatically removes all unused CSS when building for production, which means your final CSS bundle is the smallest it could possibly be. In fact, most Tailwind projects ship less than 10kB of CSS to the client.</li> <br />
