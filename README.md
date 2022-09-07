@@ -5,6 +5,7 @@
 > Instagram feed clone, in this project the user can be authenticated via Google Provider using NextAuth, all routes are protected and have different functionality depending on whether the user is authenticated or not. Using Firebase's Firestore service as a Database, from which the user can insert photos, captions and delete them through Firebase service functions like `addDoc` and `deleteDoc`, if the user is not authenticated, he will not be able to perform actions within the app, but he will be able to view the posts.
 
 :arrow_right: TailwindCSS | Rapidly build modern websites
+:arrow_right: 
 
 <br />
 
@@ -78,7 +79,7 @@ module.exports = {
 
 <br />
 
-NextAuth | Sessions and Content Control
+## NextAuth | Sessions and Content Control
 
 With NextAuth it is possible to implement a user session (interval/period of time in which there is a communication between two or more devices) in a matter of minutes. 
 
@@ -266,8 +267,4 @@ const Post = ({ id, username, userImg, img, caption }) => {
 export default Post
 ```
 
-
-
-
-
-
+*<i>next-auth.js.org/getting-started/client</i>
