@@ -20,7 +20,7 @@ Tailwind CSS is a framework designed to maximize the potential of Cascading Styl
 
 <li type="square"><strong>Dark Mode</strong> - Don’t want to be one of those websites that blinds people when they open it on their phone at 2am? Enable dark mode in your configuration file then throw dark: in front of any color utility to apply it when dark mode is active. Works for background colors, text colors, border colors, and even gradients.</li> <br />
 
-<li type="square"><strong>Extend it, tweak it, change it</strong> -Tailwind includes an expertly crafted set of defaults out-of-the-box, but literally everything can be customized — from the color palette to the spacing scale to the box shadows to the mouse cursor. Use the `tailwind.config.js` file to craft your own design system, then let Tailwind transform it into your own custom CSS framework.</li> <br />
+<li type="square"><strong>Extend it, tweak it, change it</strong> - Tailwind includes an expertly crafted set of defaults out-of-the-box, but literally everything can be customized — from the color palette to the spacing scale to the box shadows to the mouse cursor. Use the `tailwind.config.js` file to craft your own design system, then let Tailwind transform it into your own custom CSS framework.</li> <br />
 
 ```js
 // tailwind.config.js 
