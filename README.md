@@ -314,7 +314,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 
-// - Create a post and add to Firestore 'posts' collection
+// Create a post and add to Firestore 'posts' collection
   const docRef = await addDoc(collection(db, 'posts'), {
       username: session.user.username,
       caption: captionRef.current.value,
@@ -322,7 +322,7 @@ import {
       timestamp: serverTimestamp(),
     })
 
-// - Get the post ID for the newly created post
+// Get the post ID for the newly created post
 console.log('New doc added with ID', docRef.id)
 ```
 <br />
