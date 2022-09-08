@@ -7,7 +7,6 @@
 :arrow_right: TailwindCSS | Rapidly build modern websites <br />
 :arrow_right: NextAuth | Sessions and Content Control <br />
 :arrow_right: Firebase Integration - Persisting Data <br />
-:arrow_right: Cloud Storage for Firebase
 
 <br />
 
@@ -348,18 +347,15 @@ useEffect(
 ```
 
 *<i>firebase.google.com/docs/firestore/quickstart?authuser=0&hl=en</i>
-
 <br />
 
-## Cloud Storage for Firebase
+### Cloud Storage for Firebase
 
 Cloud Storage for Firebase is designed for app developers to store and display user-generated content such as photos or videos.
 
 Cloud Storage for Firebase is a powerful, simple, and cost-effective object storage service built for Google scale. With the Firebase SDKs for Cloud Storage, you can use Google security to upload and download files in Firebase apps, regardless of network quality.
 
-### Upload files 
-
-To upload a file to Cloud Storage, first reference the full path of the file, including the file name.
+<li type="square"><strong>Upload files</strong> - To upload a file to Cloud Storage, first reference the full path of the file, including the file name.</li> <br />
 
 ```jsx
 // components/Modal.jsx
@@ -370,13 +366,13 @@ import { ref } from 'firebase/storage'
 //  Upload the image to firebase storage with the post ID
 const imageRef = ref(storage, `posts/${docRef.id}/image`)
 ```
-<br />
+
 <li type="square"><strong>Upload a string</strong> - If a Blob, File, or Uint8Array is not available, you can use <strong>uploadString()</strong> to upload a raw base64 encoded string, base64url, or data_url to Cloud Storage:</li> <br />
 
 ```js
 uploadString(ref: StorageReference, value: string, format?: StringFormat | undefined, metadata?: UploadMetadata | undefined): Promise<UploadResult>
 ```
-<br />
+
 <li type="square"><strong>Convert the image to base64</strong></li> <br />
 
 ```jsx
@@ -400,11 +396,11 @@ The FileReader object allows web applications to <strong>asynchronously read the
 
 The `readAsDataURL` method is used to read content of type Blob or File. When the read operation ends, the readyState flag changes to DONE and the loadend event is fired. Then the `result` attribute will contain the base64 encoded URL of the file.
 
-#### <i>FileReader.onloads</i>
+#### <i>FileReader.onload</i>
 
 A handler for the load event. This event is called each time the read operation is successfully completed.
 <br />
-<li type="square">Use the base64 encoded url of the file with the <strong>uploadString()</strong> function and update the post document containing the url of the image in Storage Cloud:</li> <br />
+<li type="square"><strong>uploadString() &  getDownloadURL()</strong> - Use the base64 encoded url of the file with the uploadString() function and update the post document containing the url of the image in Storage Cloud:</li> <br />
 
 ```jsx
 // components/Modal.jsx
