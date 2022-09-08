@@ -376,6 +376,8 @@ uploadString(ref: StorageReference, value: string, format?: StringFormat | undef
 <li type="square"><strong>Convert the image to base64</strong></li> <br />
 
 ```jsx
+// components/Modal.jsx
+
 const addImageToPost = (e) => {
   const reader = new FileReader()
   if (e.target.files[0]) {
