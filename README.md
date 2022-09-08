@@ -268,3 +268,86 @@ export default Post
 ```
 
 *<i>next-auth.js.org/getting-started/client</i>
+
+<br />
+
+## Firebase Integration - Persisting Data
+
+Using the services provided by Firebase, we can create functional applications in a matter of minutes, whose data is stored and retrieved through its functions such as `addDoc()`, `updateDoc()` or `onSnapshot()` provided when using Firestore . After setting up the Firebase environment, installing it and creating the client, let's see how we can use these functions provided by the different Firebase services.
+
+### Cloud Firestore
+
+Use Firebase's flexible and scalable NoSQL cloud database to store and sync data for both server-side and client-side development.
+
+Cloud Firestore is a flexible and scalable database for mobile, web and server focused development by Firebase and Google Cloud. Like Firebase Realtime Database, it keeps your data in sync across client applications using real-time listeners. Plus, it offers offline support for mobile and web devices so you can build responsive apps that work regardless of network latency or internet connectivity. Cloud Firestore also offers seamless integration with other Firebase and Google Cloud products, including Cloud Functions.
+
+<li type="square"><strong>Initialize Cloud Firestore</strong> - Initialize a Cloud Firestore instance:</li> <br />
+
+```js
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://firebase.google.com/docs/web/learn-more#config-object
+const firebaseConfig = {
+    // ...
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+```
+<br />
+<li type="square"><strong>Add Data</strong> - Cloud Firestore stores data in Documents that are stored in Collections. Cloud Firestore implicitly creates collections and documents the first time you add data to the document. It is not necessary to create collections or documents explicitly. Create a new collection and document using the following sample code.</li> <br />
+
+```jsx
+// components/Modal.jsx
+
+import { db, storage } from '../firebase'
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+} from 'firebase/firestore'
+
+// - Create a post and add to Firestore 'posts' collection
+  const docRef = await addDoc(collection(db, 'posts'), {
+      username: session.user.username,
+      caption: captionRef.current.value,
+      profileImg: session.user.image,
+      timestamp: serverTimestamp(),
+    })
+
+// - Get the post ID for the newly created post
+console.log('New doc added with ID', docRef.id)
+```
+<br />
+<li type="square"><strong>Read Data</strong> - To quickly verify that you've added data to Cloud Firestore, use the data viewer in the Firebase console. You can use the <strong>query</strong> method to query your collection.</li> <br />
+
+```jsx
+// components/Posts.jsx
+
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { db } from '../firebase'
+
+useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
+        (snapshot) => {
+          setPosts(snapshot.docs)
+        }
+      ),
+    []
+  )
+```
+
+*<i>firebase.google.com/docs/firestore/quickstart?authuser=0&hl=en</i>
+
+
+
+
+
