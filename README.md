@@ -6,7 +6,8 @@
 
 :arrow_right: TailwindCSS | Rapidly build modern websites <br />
 :arrow_right: NextAuth | Sessions and Content Control <br />
-:arrow_right: Firebase Integration - Persisting Data
+:arrow_right: Firebase Integration - Persisting Data <br />
+:arrow_right: Cloud Storage for Firebase
 
 <br />
 
