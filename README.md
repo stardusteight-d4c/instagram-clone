@@ -44,15 +44,15 @@ const MiniProfile = () => {
 export default MiniProfile
 ```
 
-<li type="square"><strong>An API for your design system</strong> - Utility classes help you work within the constraints of a system instead of littering your stylesheets with arbitrary values. They make it easy to be consistent with color choices, spacing, typography, shadows, and everything else that makes up a well-engineered design system.</li> <br />
+<li><strong>An API for your design system</strong> - Utility classes help you work within the constraints of a system instead of littering your stylesheets with arbitrary values. They make it easy to be consistent with color choices, spacing, typography, shadows, and everything else that makes up a well-engineered design system.</li> <br />
 
-<li type="square"><strong>Never ship unused CSS</strong> - Tailwind automatically removes all unused CSS when building for production, which means your final CSS bundle is the smallest it could possibly be. In fact, most Tailwind projects ship less than 10kB of CSS to the client.</li> <br />
+<li><strong>Never ship unused CSS</strong> - Tailwind automatically removes all unused CSS when building for production, which means your final CSS bundle is the smallest it could possibly be. In fact, most Tailwind projects ship less than 10kB of CSS to the client.</li> <br />
 
-<li type="square"><strong>Hover and focus states</strong> - Want to style something on hover? Stick hover: at the beginning of the class you want to add. Works for focus, active, disabled, focus-within, focus-visible, and even fancy states we invented ourselves like group-hover.</li> <br />
+<li><strong>Hover and focus states</strong> - Want to style something on hover? Stick hover: at the beginning of the class you want to add. Works for focus, active, disabled, focus-within, focus-visible, and even fancy states we invented ourselves like group-hover.</li> <br />
 
-<li type="square"><strong>Dark Mode</strong> - Don’t want to be one of those websites that blinds people when they open it on their phone at 2am? Enable dark mode in your configuration file then throw dark: in front of any color utility to apply it when dark mode is active. Works for background colors, text colors, border colors, and even gradients.</li> <br />
+<li><strong>Dark Mode</strong> - Don’t want to be one of those websites that blinds people when they open it on their phone at 2am? Enable dark mode in your configuration file then throw dark: in front of any color utility to apply it when dark mode is active. Works for background colors, text colors, border colors, and even gradients.</li> <br />
 
-<li type="square"><strong>Extend it, tweak it, change it</strong> - Tailwind includes an expertly crafted set of defaults out-of-the-box, but literally everything can be customized — from the color palette to the spacing scale to the box shadows to the mouse cursor. Use the `tailwind.config.js` file to craft your own design system, then let Tailwind transform it into your own custom CSS framework.</li> <br />
+<li><strong>Extend it, tweak it, change it</strong> - Tailwind includes an expertly crafted set of defaults out-of-the-box, but literally everything can be customized — from the color palette to the spacing scale to the box shadows to the mouse cursor. Use the `tailwind.config.js` file to craft your own design system, then let Tailwind transform it into your own custom CSS framework.</li> <br />
 
 ```js
 // tailwind.config.js 
@@ -282,7 +282,7 @@ Use Firebase's flexible and scalable NoSQL cloud database to store and sync data
 
 Cloud Firestore is a flexible and scalable database for mobile, web and server focused development by Firebase and Google Cloud. Like Firebase Realtime Database, it keeps your data in sync across client applications using real-time listeners. Plus, it offers offline support for mobile and web devices so you can build responsive apps that work regardless of network latency or internet connectivity. Cloud Firestore also offers seamless integration with other Firebase and Google Cloud products, including Cloud Functions.
 
-<li type="square"><strong>Initialize Cloud Firestore</strong> - Initialize a Cloud Firestore instance:</li> <br />
+<li><strong>Initialize Cloud Firestore</strong> - Initialize a Cloud Firestore instance:</li> <br />
 
 ```js
 import { initializeApp } from "firebase/app";
@@ -302,7 +302,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 ```
 <br />
-<li type="square"><strong>Add Data</strong> - Cloud Firestore stores data in Documents that are stored in Collections. Cloud Firestore implicitly creates collections and documents the first time you add data to the document. It is not necessary to create collections or documents explicitly. Create a new collection and document using the following sample code.</li> <br />
+<li><strong>Add Data</strong> - Cloud Firestore stores data in Documents that are stored in Collections. Cloud Firestore implicitly creates collections and documents the first time you add data to the document. It is not necessary to create collections or documents explicitly. Create a new collection and document using the following sample code.</li> <br />
 
 ```jsx
 // components/Modal.jsx
@@ -326,7 +326,7 @@ import {
 console.log('New doc added with ID', docRef.id)
 ```
 <br />
-<li type="square"><strong>Read Data</strong> - To quickly verify that you've added data to Cloud Firestore, use the data viewer in the Firebase console. You can use the <strong>query</strong> method to query your collection.</li> <br />
+<li><strong>Read Data</strong> - To quickly verify that you've added data to Cloud Firestore, use the data viewer in the Firebase console. You can use the <strong>query</strong> method to query your collection.</li> <br />
 
 ```jsx
 // components/Posts.jsx
@@ -355,7 +355,7 @@ Cloud Storage for Firebase is designed for app developers to store and display u
 
 Cloud Storage for Firebase is a powerful, simple, and cost-effective object storage service built for Google scale. With the Firebase SDKs for Cloud Storage, you can use Google security to upload and download files in Firebase apps, regardless of network quality.
 
-<li type="square"><strong>Upload files</strong> - To upload a file to Cloud Storage, first reference the full path of the file, including the file name.</li> <br />
+<li><strong>Upload files</strong> - To upload a file to Cloud Storage, first reference the full path of the file, including the file name.</li> <br />
 
 ```jsx
 // components/Modal.jsx
@@ -367,13 +367,13 @@ import { ref } from 'firebase/storage'
 const imageRef = ref(storage, `posts/${docRef.id}/image`)
 ```
 
-<li type="square"><strong>Upload a string</strong> - If a Blob, File, or Uint8Array is not available, you can use <strong>uploadString()</strong> to upload a raw base64 encoded string, base64url, or data_url to Cloud Storage:</li> <br />
+<li><strong>Upload a string</strong> - If a Blob, File, or Uint8Array is not available, you can use <strong>uploadString()</strong> to upload a raw base64 encoded string, base64url, or data_url to Cloud Storage:</li> <br />
 
 ```js
 uploadString(ref: StorageReference, value: string, format?: StringFormat | undefined, metadata?: UploadMetadata | undefined): Promise<UploadResult>
 ```
 
-<li type="square"><strong>Convert the image to base64</strong></li> <br />
+<li><strong>Convert the image to base64</strong></li> <br />
 
 ```jsx
 // components/Modal.jsx
@@ -402,7 +402,7 @@ The `readAsDataURL` method is used to read content of type Blob or File. When th
 
 A handler for the load event. This event is called each time the read operation is successfully completed.
 <br />
-<li type="square"><strong>uploadString() &  getDownloadURL()</strong> - Use the base64 encoded url of the file with the uploadString() function and update the post document containing the url of the image in Storage Cloud:</li> <br />
+<li><strong>uploadString() &  getDownloadURL()</strong> - Use the base64 encoded url of the file with the uploadString() function and update the post document containing the url of the image in Storage Cloud:</li> <br />
 
 ```jsx
 // components/Modal.jsx
