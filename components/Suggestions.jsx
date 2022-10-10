@@ -1,28 +1,30 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
-import { faker } from '@faker-js/faker'
+import { SUGGESTIONS_TO_FOLLOW } from '../mockData'
+// import { faker } from '@faker-js/faker'
 
 const Suggestions = () => {
-  const [suggestionsToFollow, setSuggestionsToFollow] = useState([])
+  const [suggestionsToFollow, setSuggestionsToFollow] = useState(SUGGESTIONS_TO_FOLLOW)
 
-  const createRandomUser = () => {
-    return {
-      userId: faker.datatype.uuid(),
-      name: faker.name.findName(),
-      username: faker.internet.userName(),
-      avatar: faker.image.avatar(),
-      company: faker.company.companyName(),
-    }
-  }
+  // const createRandomUser = () => {
+  //   return {
+  //     userId: faker.datatype.uuid(),
+  //     name: faker.name.findName(),
+  //     username: faker.internet.userName(),
+  //     avatar: faker.image.avatar(),
+  //     company: faker.company.companyName(),
+  //   }
+  // }
 
-  useEffect(() => {
-    const SUGGESTIONS_TO_FOLLOW = []
-    Array.from({ length: 5 }).forEach(() => {
-      SUGGESTIONS_TO_FOLLOW.push(createRandomUser())
-    })
-    setSuggestionsToFollow(SUGGESTIONS_TO_FOLLOW)
-  }, [])
+  // useEffect(() => {
+  //   const SUGGESTIONS_TO_FOLLOW = []
+  //   Array.from({ length: 5 }).forEach(() => {
+  //     SUGGESTIONS_TO_FOLLOW.push(createRandomUser())
+  //   })
+  //   console.log('SUGGESTIONS_TO_FOLLOW', SUGGESTIONS_TO_FOLLOW)
+  //   setSuggestionsToFollow(SUGGESTIONS_TO_FOLLOW)
+  // }, [])
 
   return (
     <div className="mt-4 ml-8">
